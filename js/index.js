@@ -67,11 +67,12 @@ function renderGreenPeppers() {
 function renderWhiteSauce() {
   // check the function potential hint = default value is false
   // Iteration 2: add/remove the class "sauce-white" of `<section class="sauce">`
+  // remove sauce works only ones, need to set default without sauce
 let sauceW = document.querySelector('.sauce')
   if (state.whiteSauce) {
-    sauceW.classList.add('.sauce-white')
+    sauceW.setAttribute('class', '.sauce-white')
   } else {
-  sauceW.classList.remove('.sauce-white')
+  sauceW.removeAttribute('.sauce-white')
   }
 }
 
