@@ -68,20 +68,39 @@ function renderWhiteSauce() {
   // check the function potential hint = default value is false
   // Iteration 2: add/remove the class "sauce-white" of `<section class="sauce">`
   // remove sauce works only ones, need to set default without sauce
-let sauceW = document.querySelector('.sauce')
+  let sauceW = document.querySelector('.sauce');
   if (state.whiteSauce) {
-    sauceW.setAttribute('class', '.sauce-white')
+    sauceW.classList.add('sauce-white');
   } else {
-  sauceW.removeAttribute('.sauce-white')
+    sauceW.classList.remove('sauce-white');
   }
 }
 
 function renderGlutenFreeCrust() {
+  // Same issue as with the sauce remove crust works not add
   // Iteration 2: add/remove the class "crust-gluten-free" of `<section class="crust">`
+  let crust = document.querySelector('.crust');
+  if (state.glutenFreeCrust) {
+    crust.classList.remove('crust-gluten-free');
+  } else {
+    crust.classList.add('crust-gluten-free');
+  }
 }
+let btns = document.querySelectorAll('.btn');
 
 function renderButtons() {
   // Iteration 3: add/remove the class "active" of each `<button class="btn">`
+  btns.forEach((btn) => {
+    if (btn.classList.contains('active'))
+      btn.addEventListener('click', () => {
+        btn.classList.remove('active');
+      });
+    else {
+      btn.addEventListener('click', () => {
+        btn.classList.add('active');
+      });
+    }
+  });
 }
 
 function renderPrice() {
@@ -116,3 +135,8 @@ document.querySelector('.btn.btn-sauce').addEventListener('click', () => {
   renderEverything();
 });
 // Iteration 2: Add click event listener on `<button class="btn btn-crust">`
+
+document.querySelector('.btn.btn-crust').addEventListener('click', () => {
+  state.glutenFreeCrust = !state.glutenFreeCrust;
+  renderEverything();
+});
